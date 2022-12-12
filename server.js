@@ -5,7 +5,7 @@ const fs = require("fs");
 fs.copyFile('db.json','./tmp/db.json',function(err){
 	if(err) console.log('something wrong was happened')
 	else console.log('copy file succeed');
-}
+})
 
 const {
   filteredPasswordObjs,
