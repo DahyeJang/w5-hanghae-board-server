@@ -10,10 +10,9 @@ const {
 } = require("./utils");
 
 const server = jsonServer.create();
-const router = jsonServer.router(path.resolve(__dirname + "/db.json"));
-const middlewares = jsonServer.defaults({
-  static: path.resolve(__dirname + "/../build/"),
-});
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+
 
 server.use(middlewares);
 
@@ -53,6 +52,7 @@ server.get("/comments", (req, res) => {
 
 server.use((req, res, next) => {
   if (req.method.toString() === "PATCH" || req.method.toString() === "DELETE") {
+    console.log(req);
     if (!req?.body) {
       return res.status(400).send({ message: "입력이 올바르지 않습니다." });
     }
@@ -72,13 +72,6 @@ server.use((req, res, next) => {
 });
 
 server.use(jsonServer.bodyParser);
-
-// Add this before server.use(router)
-server.use(
-  jsonServer.rewriter({
-    "/api/*": "/$1",
-  })
-);
 server.use(router);
 
 server.listen(port, () => {
