@@ -11,7 +11,7 @@ const {
 } = require("./utils");
 
 const server = jsonServer.create();
-const router = jsonServer.router(process.env.DB_URL + "/db.json");
+const router = jsonServer.router(process.env.DB_URL + "db.json");
 const middlewares = jsonServer.defaults();
 
 
