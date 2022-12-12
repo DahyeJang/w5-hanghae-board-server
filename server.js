@@ -1,11 +1,6 @@
 const jsonServer = require("json-server");
 const path = require("path");
 const url = require("url");
-const fs = require("fs");
-fs.copyFile('db.json','./tmp/db.json',function(err){
-  	if (err) console.log(err);
-	else console.log('copy file succeed');
-})
 
 const {
   filteredPasswordObjs,
@@ -16,7 +11,7 @@ const {
 } = require("./utils");
 
 const server = jsonServer.create();
-const router = jsonServer.router('./tmp/db.json');
+const router = jsonServer.router(process.env.DB_URL + "/db.json");
 const middlewares = jsonServer.defaults();
 
 
