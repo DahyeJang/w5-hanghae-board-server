@@ -50,6 +50,8 @@ server.get("/comments", (req, res) => {
   );
 });
 
+server.use(jsonServer.bodyParser);
+
 server.use((req, res, next) => {
   if (req.method.toString() === "PATCH" || req.method.toString() === "DELETE") {
     console.log(req);
@@ -71,7 +73,6 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(jsonServer.bodyParser);
 server.use(router);
 
 server.listen(port, () => {
