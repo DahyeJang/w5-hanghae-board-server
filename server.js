@@ -3,7 +3,7 @@ const path = require("path");
 const url = require("url");
 const fs = require("fs");
 fs.copyFile('db.json','./tmp/db.json',function(err){
-	if(err) console.log('something wrong was happened')
+  	if (err) console.log(err);
 	else console.log('copy file succeed');
 })
 
